@@ -14,7 +14,9 @@ async function downloadImage(url, name, type) {
         /* create data/images folder if not found */
         const dir = join(__dirname, '..', 'data');
         createNotExistsDir(dir);
-        const images = join(dir, 'images');
+        const static = join(dir, 'static');
+        createNotExistsDir(static);
+        const images = join(static, 'images');
         createNotExistsDir(images);
         const typePath = join(images, type);
         createNotExistsDir(typePath);
@@ -24,7 +26,7 @@ async function downloadImage(url, name, type) {
         const stream = createWriteStream(path);
         data.pipe(stream);
 
-        return true;
+        return `/static/images/${type}/${name}.jpg`;
     } catch {
         return false;
     }
