@@ -3,6 +3,9 @@ const types = {
     grocery: [
         "fruits",
         "vegetables"
+    ],
+    makeup: [
+        "blusher"
     ]
 };
 

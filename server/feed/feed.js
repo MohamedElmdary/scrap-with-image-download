@@ -11,7 +11,7 @@ async function feed(type, categories) {
     const data = await Promise.all(promises);
     const items = data.map((v) => v.products.items).flat(Infinity);
     items.forEach(async ({ image: url, slug, id }) => {
-        if (await downloadImage(url, `${slug}-${id}`)) {
+        if (await downloadImage(url, `${slug}-${id}`, type)) {
             // should save data to sqlite her
         }
     });

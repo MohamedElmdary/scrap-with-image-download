@@ -3,7 +3,7 @@ const { createWriteStream } = require('fs');
 const { join } = require('path');
 const createNotExistsDir = require('./createNotExistsDir');
 
-async function downloadImage(url, name) {
+async function downloadImage(url, name, type) {
     try {
         const { data } = await axios({
             method: 'GET',
@@ -16,9 +16,11 @@ async function downloadImage(url, name) {
         createNotExistsDir(dir);
         const images = join(dir, 'images');
         createNotExistsDir(images);
+        const typePath = join(images, type);
+        createNotExistsDir(typePath);
 
         /* save image to images folder */
-        const path = join(images, `${name}.jpg`);
+        const path = join(typePath, `${name}.jpg`);
         const stream = createWriteStream(path);
         data.pipe(stream);
 
